@@ -1,0 +1,75 @@
+GIT - Sistema de controle de versão de código.
+
+Configuração inicial 
+    -   git config --global user.name "Paulo Rangel"
+    -   git config --global user.email "pv.rangel13@gmail.com"
+    -   git config --global color.ui true (usado para colorir as interações que serão executadas nele)
+
+    -   Necessário criar ou entrar em uma pasta do seu projeto (repositório)
+    -   git init (Initialized empty Git repository in /root/aulagit/.git/) - Diretório criado .git  Diretório com estrura para controlar o versionamento do código
+    -   git status - Exibe o status
+    -   git add arquivo_desejado - Habilita o arquivo para poder receber commit
+    -   git commit -m "Faça aqui uma descrição entendível" - Faz um commit no arquivo habilitado
+    -   git log - Exibe os commits efetuados no aquivo
+
+    -   git commit meu_arquivo.txt -"commit em arquivo especifico" - Faz o commit em um arquivo especifico.
+
+Observação importante, nunca se deve comitar um arquivo direto, sempre após uma modificação é necessário habilitar o arquivo para receber commit com git add arquivo_desejado.
+
+Os 3 estágios de um commit:  
+    -   Untracked files: Arquivos que não estão sendo versionados pelo GIT
+    -   Changes to be committed: Arquivos que estão prontos para serem comitados (necessário a utilização do git add arquivo_desejado) 
+    -   nothing to commit, working tree clean: Informa que não temos arquivos para serem comitados, após o arquivo receber o commit -m
+
+Dicas do dia a dia
+    - git add . - Habilita todos os arquivos para receberem commit (não sendo necessário fazer um a um).
+   
+    - git commit -a -m "Commintando arquivo teste e arquivo" - Comando habilita para receber commit e faz o commit na sequencia, não recomendado.
+
+Conhecendo git log
+    - git log -p - Exibe para cada aquivo comitado o que foi alterado
+    - git log -p 2 - Exibe o que foi comitado dos dois últimos arquivos comitados.
+    - git log --stat - Exibe uma statistica detalhada de quanto foi inserido
+    - git log --pretty=oneline - Exibe os commits por linha 
+    - git log --pretty=format:"%h -%an, %ar : %s" - Exibe inicio do commit quem comitou, quanto tempo, descrição do commit
+    - git log --since=2.days - Exibe os logs dos últimos dois dias (pode ser usado semana, mês e ano)
+
+    - .gitignore - Arquivo de texto onde podemos colocar todos os arquivos e diretorios que não queremos que entre no controle de versão, assim nem aparecem quando damos o gitstatus
+
+Dei um git add para habilitar um arquivo para commit, porém que voltar para untrackerd
+    -   git reset HEAD arquivo_desejado
+
+Voltando uma versão.
+    - git checkout hash_commit_desejado - Volta para a versão desejada
+            Exemplo: git checkout f7e1e386e4ac0f2bfd581620e63b7dd09df6876b
+    - git reset HEAD~1 - Volta um commit, se colocar o 2 na frente do ~ ele voltará 2 commits
+    - git reset HEAD~1 --soft - Volta para o status de receber commit (habilitado)
+    - git reset HEAD~1 --hard - Remove o commit, voltando ao estado anterior.
+
+
+Falando sobre branchs
+    - Branchs são galhos - Pode se trabalhar com ramificações do branch master, possibilitando assim criar outros branchs e ao final dar um merge para juntar tudo, também pode-se criar branchs de outros branchs. 
+
+Criando branchs
+    - git branch - Lista os branchs existentes e mostra um * em qual estamos
+    - git branch -v - Exibe os branchs, onde estamos e os últimos commits efetuados neles.
+    - git checkout -b nome_desejado_branch - Cria o branch e passamos a trabalhar nele, todos os arquivos criados nele, ficam nele.
+    - git checkout nome_branch - Muda para o branch desejado.
+
+
+Efetuando merge (mesclando commit de branchs)
+    - git merge funcionalidade1 - Será mesclado o último commit do funcionalidade1 no branch master, assim criando um novo commit no branch master.
+    - git rebase funcionalidade1 - Ele reordena os commits trazendo os commits do funcionalidade1 para o master (Evitar Fazer). <<<<<<<<<<<<<<<<<<<<<<<<<< Evitar fazer <<<<<<<<<<<
+    - git branch --merged - Lista branchs que já foram juntados (merged)
+    - git branch --no-merged - Lista branchs que não foram juntados (merged)
+
+
+
+GIT HUB
+    -   Fornece um repositório remoto (https://github.com/pvrangel13/git-code-education.git)
+
+Configurar repositorio remoto
+    -   git remote add repositorio_desejado - Configura repositorio remoto no git local
+        Exmplo: git remote add origin https://github.com/pvrangel13/git-code-education.git
+
+    - git push origin master - Envia o repositorio master para o master remoto (leva os arquivos locais para o repositorio do GIT HUB)
